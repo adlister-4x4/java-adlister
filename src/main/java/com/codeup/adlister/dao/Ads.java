@@ -12,4 +12,10 @@ public interface Ads {
     Long insert(Ad ad);
 
     List<Ad> listByUserid(User user);
+
+    List<Ad> getAdByTitle(String title);
+
+    Ad getAdByAdId(int adId);
+
+
 }

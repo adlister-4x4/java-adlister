@@ -19,6 +19,9 @@
             <div class="col-md-6">
                 <h2>${ad.title}</h2>
                 <p>${ad.description}</p>
+                <form action="/profile?adId=${ad.id}" method="post">
+                <button type="submit"><a href="/profile?adId=${ad.id}"></a>DELETE</button>
+                </form>
             </div>
         </c:forEach>
     </div>

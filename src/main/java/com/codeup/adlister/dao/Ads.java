@@ -17,5 +17,6 @@ public interface Ads {
 
     Ad getAdByAdId(int adId);
 
+    List<Ad> returnAd(String adId);
 
 }

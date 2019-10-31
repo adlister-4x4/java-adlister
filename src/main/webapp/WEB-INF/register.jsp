@@ -18,6 +18,10 @@
                     <input id="username" name="username" class="form-control" type="text">
                     <div>${userexists}</div>
                 </c:when>
+                <c:when test="${usererror.length() > 0}">
+                    <input id="username" name="username" class="form-control" type="text">
+                    <div>${usererror}</div>
+                </c:when>
                 <c:otherwise>
                     <input id="username" name="username" class="form-control" type="text">
                 </c:otherwise>
@@ -30,6 +34,14 @@
                     <input id="email" name="email" class="form-control" type="text">
                     <div>${email}</div>
                 </c:when>
+                <c:when test="${emailerror.length() > 0}">
+                    <input id="email" name="email" class="form-control" type="text">
+                    <div>${emailerror}</div>
+                </c:when>
+                <c:when test="${emailexists.length() > 0}">
+                    <input id="email" name="email" class="form-control" type="text">
+                    <div>${emailexists}</div>
+                </c:when>
                 <c:otherwise>
                     <input id="email" name="email" class="form-control" type="text">
                 </c:otherwise>
@@ -37,19 +49,32 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input id="password" name="password" class="form-control" type="password">
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">Confirm Password</label>
             <c:choose>
+                <c:when test="${pwderror.length() > 0}">
+                    <input id="password" name="password" class="form-control" type="password">
+                    <div>${pwderror}</div>
+                </c:when>
                 <c:when test="${passwordmatch.length() > 0}">
-                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                    <input id="password" name="password" class="form-control" type="password">
                     <div>${passwordmatch}</div>
                 </c:when>
                 <c:otherwise>
-                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+                    <input id="password" name="password" class="form-control" type="password">
                 </c:otherwise>
             </c:choose>
+<%--            <input id="password" name="password" class="form-control" type="password">--%>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+<%--            <c:choose>--%>
+<%--                <c:when test="${passwordmatch.length() > 0}">--%>
+<%--                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">--%>
+<%--                    <div>${passwordmatch}</div>--%>
+<%--                </c:when>--%>
+<%--                <c:otherwise>--%>
+                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>

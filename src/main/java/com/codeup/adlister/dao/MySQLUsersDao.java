@@ -36,6 +36,17 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    public User findEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            return extractUser(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding email", e);
+        }
+    }
+
     @Override
     public Long insert(User user) {
         String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";

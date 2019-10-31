@@ -1,3 +1,5 @@
+use adlister_db;
+
 insert into users (username, email, password) values ('colkowicz0', 'jmingardo0@scribd.com', '2Uc8GJWsd0ed');
 insert into users (username, email, password) values ('bebunoluwa1', 'pcarillo1@npr.org', 'xoZOPZk');
 insert into users (username, email, password) values ('ojuarez2', 'ecomini2@google.ru', 'hHAseGk7zSvA');

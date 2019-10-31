@@ -22,3 +22,5 @@ public class AdsIndexServlet extends HttpServlet {
         req.getRequestDispatcher("/WEB-INF/ads/index.jsp").forward(req, resp);
     }
 }
+
+

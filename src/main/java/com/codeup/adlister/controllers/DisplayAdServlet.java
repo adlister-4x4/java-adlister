@@ -15,13 +15,14 @@ public class DisplayAdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String adId = request.getParameter("ad_id");
 
-        String userId = request.getParameter("user_id");
 
+        String userId = request.getParameter("user_id");
 
         if (adId == null){
             response.sendRedirect("/ads");
             return;
         }
+
 
 //        System.out.println("== user from DisplayAServlet: " + DaoFactory.getUsersDao().findUserByAdId(userId));
 //
@@ -35,4 +36,5 @@ public class DisplayAdServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/ads/displayAdPage.jsp").forward(request, response);
 
     }
+
 }

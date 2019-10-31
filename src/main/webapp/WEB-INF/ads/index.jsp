@@ -29,7 +29,7 @@
             <p>ad user id ${ad.userId}</p>
             <p>ad id ${ad.id}</p>
             <p>"/ad?ad_id=${ad.id}"</p>
-                <%--            sending clicked ad id to servlet--%>
+
             <a href="/ad?user_id=${ad.userId}&ad_id=${ad.id}">Go to ads page</a>
         </div>
     </c:forEach>

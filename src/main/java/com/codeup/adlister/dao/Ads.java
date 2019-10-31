@@ -19,4 +19,6 @@ public interface Ads {
 
     List<Ad> returnAd(String adId);
 
+    void delete(int id);
+
 }

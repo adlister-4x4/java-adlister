@@ -1,9 +1,12 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLUsersDao implements Users {
     private Connection connection;
@@ -34,7 +37,22 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-    @Override
+    public List<User> findUserByAdId(String userId) {
+        int user_id = Integer.parseInt(userId);
+        System.out.println("printing from findUserByAdId method: " + user_id);
+        try{
+            String query = "SELECT * FROM users WHERE id IN (SELECT user_id FROM ads where user_id = ?)";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, user_id);
+            ResultSet rs = stmt.executeQuery();
+            return createUserFromResults(rs);
+        }catch (SQLException e){
+            throw new RuntimeException("Error finding user by user id", e);
+        }
+
+    }
+
+
     public Long insert(User user) {
         String query = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
         try {
@@ -52,15 +70,23 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
-            return null;
-        }
+//        if (! rs.next()) {
+//            return null;
+//        }
         return new User(
             rs.getLong("id"),
             rs.getString("username"),
             rs.getString("email"),
             rs.getString("password")
         );
+    }
+
+    private List<User> createUserFromResults(ResultSet rs) throws SQLException {
+        List<User> users = new ArrayList<>();
+        while (rs.next()) {
+            users.add(extractUser(rs));
+        }
+        return users;
     }
 
 }

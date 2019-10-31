@@ -25,6 +25,7 @@ public class DisplayAdServlet extends HttpServlet {
 
         // Returns ad details user clicked
         request.setAttribute("ads", DaoFactory.getAdsDao().returnAd(adId));
+        System.out.println("DisplayAdServlet: " + DaoFactory.getUsersDao().findUserByAdId(userId));
 
         //Returns user from selected ad
         request.setAttribute("users", DaoFactory.getUsersDao().findUserByAdId(userId));

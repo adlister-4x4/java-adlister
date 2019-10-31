@@ -12,34 +12,34 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Viewing All The Ads" />
     </jsp:include>
+    <link rel="stylesheet" href="../../css/singleAdStyles.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here is your ad!</h1>
-
-    <c:forEach var="ad" items="${ads}">
-        <div class="col-md-6">
-            <h2>${ad.title}</h2>
-            <p>${ad.description}</p>
-            <p>ad user id ${ad.userId}</p>
-            <p>ad id ${ad.id}</p>
-            <p>"/ad?ad_id=${ad.id}"</p>
-
-        </div>
-    </c:forEach>
-
+    <button id="back-button" class="btn btn-primary" onclick="window.location.href = '/ads';"> &#8617 Back to Ads </button>
+<div class="row">
     <c:forEach var="user" items="${users}">
-        <div class="col-md-6">
-            <img src="https://i.pravatar.cc/200" alt="image placeholder">
-            <h2>Username: ${user.username}</h2>
-            <p>User email: ${user.email}</p>
-            <p>User password: ${user.password}</p>
-            <p>User id ${user.id}</p>
+        <div id="left-side" class="col-md-6">
+            <img id="user-img" src="https://i.pravatar.cc/200" alt="image placeholder">
+            <h2 id="username">Username: ${user.username}</h2>
+
 
         </div>
     </c:forEach>
+    <c:forEach var="ad" items="${ads}">
+        <div id="right-side" class="col-md-6">
+            <h2 id="ad-title">${ad.title}</h2>
+            <p id="ad-description">${ad.description}</p>
+<%--            <p>ad user id ${ad.userId}</p>--%>
+<%--            <p>ad id ${ad.id}</p>--%>
+<%--            <p>"/ad?ad_id=${ad.id}"</p>--%>
+
+        </div>
+    </c:forEach>
+
+</div>
 </div>
 
 </body>

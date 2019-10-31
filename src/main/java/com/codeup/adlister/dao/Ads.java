@@ -10,11 +10,16 @@ public interface Ads {
     List<Ad> all();
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
-    // return selected ad by user
+
+
+    List<Ad> l    // return selected ad by user
     List<Ad> returnAd(String adId);
 
 
+istByUserid(User user);
 
+    List<Ad> getAdByTitle(String title);
 
+    Ad getAdByAdId(int adId);
 
 }

@@ -62,6 +62,7 @@
                     <input id="password" name="password" class="form-control" type="password">
                 </c:otherwise>
             </c:choose>
+<<<<<<< HEAD
 <%--            <input id="password" name="password" class="form-control" type="password">--%>
         </div>
         <div class="form-group">
@@ -75,6 +76,21 @@
                     <input id="confirm_password" name="confirm_password" class="form-control" type="password">
 <%--                </c:otherwise>--%>
 <%--            </c:choose>--%>
+=======
+            <%--            <input id="password" name="password" class="form-control" type="password">--%>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <%--            <c:choose>--%>
+            <%--                <c:when test="${passwordmatch.length() > 0}">--%>
+            <%--                    <input id="confirm_password" name="confirm_password" class="form-control" type="password">--%>
+            <%--                    <div>${passwordmatch}</div>--%>
+            <%--                </c:when>--%>
+            <%--                <c:otherwise>--%>
+            <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+            <%--                </c:otherwise>--%>
+            <%--            </c:choose>--%>
+>>>>>>> 9c60776c8f5c9681fa4a7273a5cd9db9085d758a
         </div>
         <input type="submit" class="btn btn-primary btn-block">
     </form>

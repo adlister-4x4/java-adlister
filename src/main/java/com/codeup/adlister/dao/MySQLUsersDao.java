@@ -65,7 +65,7 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
         return new User(
@@ -77,9 +77,6 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser2(ResultSet rs) throws SQLException {
-//        if (! rs.next()) {
-//            return null;
-//        }
         return new User(
                 rs.getLong("id"),
                 rs.getString("username"),
@@ -90,14 +87,13 @@ public class MySQLUsersDao implements Users {
 
     public List<User> findUserByAdId(String userId) {
         int user_id = Integer.parseInt(userId);
-        System.out.println("printing from findUserByAdId method: " + user_id);
-        try{
+        try {
             String query = "SELECT * FROM users WHERE id IN (SELECT user_id FROM ads where user_id = ?)";
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, user_id);
             ResultSet rs = stmt.executeQuery();
             return createUserFromResults(rs);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException("Error finding user by user id", e);
         }
 

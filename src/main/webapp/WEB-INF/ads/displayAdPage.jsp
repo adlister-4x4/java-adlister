@@ -32,10 +32,6 @@
             <div id="right-side" class="col-md-6">
                 <h2 id="ad-title">${ad.title}</h2>
                 <p id="ad-description">${ad.description}</p>
-                    <%--            <p>ad user id ${ad.userId}</p>--%>
-                    <%--            <p>ad id ${ad.id}</p>--%>
-                    <%--            <p>"/ad?ad_id=${ad.id}"</p>--%>
-
             </div>
         </c:forEach>
 

@@ -76,6 +76,18 @@ public class MySQLUsersDao implements Users {
         );
     }
 
+    private User extractUser2(ResultSet rs) throws SQLException {
+//        if (! rs.next()) {
+//            return null;
+//        }
+        return new User(
+                rs.getLong("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password")
+        );
+    }
+
     public List<User> findUserByAdId(String userId) {
         int user_id = Integer.parseInt(userId);
         System.out.println("printing from findUserByAdId method: " + user_id);
@@ -94,7 +106,7 @@ public class MySQLUsersDao implements Users {
     private List<User> createUserFromResults(ResultSet rs) throws SQLException {
         List<User> users = new ArrayList<>();
         while (rs.next()) {
-            users.add(extractUser(rs));
+            users.add(extractUser2(rs));
         }
         return users;
     }

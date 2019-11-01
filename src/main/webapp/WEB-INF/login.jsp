@@ -14,6 +14,9 @@
             <label for="username">Username</label>
             <input id="username" name="username" class="form-control" type="text">
             <c:choose>
+                <c:when test="${errors.get('userempty').length() > 0}">
+                    <div>${errors.get("userempty")}</div>
+                </c:when>
                 <c:when test="${errors.get('invaliduser').length() > 0}">
                     <div>${errors.get("invaliduser")}</div>
                 </c:when>

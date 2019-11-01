@@ -37,34 +37,9 @@ public class RegisterServlet extends HttpServlet {
         boolean registerError = false;
         HashMap<String, String> errors = new HashMap<>();
 
-        if (!password.equals(passwordConfirmation)) {
-            registerError = true;
-            errors.put("passwordmatch", "Passwords do not match.");
-        }
-
-        if (!email.contains("@")&&!email.isEmpty()) {
-            registerError = true;
-            errors.put("email", "Invalid email address.");
-        }
-
-        if (email.isEmpty()) {
-            registerError = true;
-            errors.put("emailerror", "You must enter an email address.");
-        }
-
         if (username.isEmpty()) {
             registerError = true;
-            errors.put("usererror", "You must enter a username.");
-        }
-
-        if (password.isEmpty()) {
-            registerError = true;
-            errors.put("pwderror", "Password cannot be blank.");
-        }
-
-        if (DaoFactory.getUsersDao().findEmail(email) != null) {
-            registerError = true;
-            errors.put("emailexists", "Email is being used.");
+            errors.put("userempty", "You must enter a username.");
         }
 
         if (DaoFactory.getUsersDao().findByUsername(username) != null) {
@@ -72,14 +47,37 @@ public class RegisterServlet extends HttpServlet {
             errors.put("userexists", "Username is being used.");
         }
 
-        // return in any error occurs
+        if (DaoFactory.getUsersDao().findEmail(email) != null) {
+            registerError = true;
+            errors.put("emailexists", "Email is being used.");
+        }
+
+        if (!email.contains("@") && !email.isEmpty()) {
+            registerError = true;
+            errors.put("email", "Invalid email address.");
+        }
+
+        if (email.isEmpty()) {
+            registerError = true;
+            errors.put("emailempty", "You must enter an email address.");
+        }
+
+        if (password.isEmpty()) {
+            registerError = true;
+            errors.put("pwdempty", "Password cannot be blank.");
+        }
+
+        if (!password.equals(passwordConfirmation)) {
+            registerError = true;
+            errors.put("pwdmatch", "Passwords do not match.");
+        }
+
         if (registerError) {
             session.setAttribute("errors", errors);
             response.sendRedirect("/register");
             return;
         }
 
-        // create and save a new user
         User user = new User(username, email, Password.hash(password));
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");

@@ -35,7 +35,12 @@ public class LoginServlet extends HttpServlet {
         boolean loginError = false;
         HashMap<String, String> errors = new HashMap<>();
 
-        if (user == null) {
+        if (username.isEmpty()) {
+            loginError = true;
+            errors.put("userempty", "You must enter a username.");
+        }
+
+        if (user == null && !username.isEmpty()) {
             loginError = true;
             errors.put("invaliduser", "That username does not exist.");
         }

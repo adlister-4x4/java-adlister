@@ -37,22 +37,39 @@ public class RegisterServlet extends HttpServlet {
         boolean registerError = false;
         HashMap<String, String> errors = new HashMap<>();
 
-        // passwords dont match
         if (!password.equals(passwordConfirmation)) {
             registerError = true;
-            errors.put("passwordmatch", "Passwords do not match");
+            errors.put("passwordmatch", "Passwords do not match.");
         }
 
-        // email invalid
-        if (!email.contains("@")) {
+        if (!email.contains("@")&&!email.isEmpty()) {
             registerError = true;
-            errors.put("email", "Invalid email address");
+            errors.put("email", "Invalid email address.");
         }
 
-        // user exists
+        if (email.isEmpty()) {
+            registerError = true;
+            errors.put("emailerror", "You must enter an email address.");
+        }
+
+        if (username.isEmpty()) {
+            registerError = true;
+            errors.put("usererror", "You must enter a username.");
+        }
+
+        if (password.isEmpty()) {
+            registerError = true;
+            errors.put("pwderror", "Password cannot be blank.");
+        }
+
+        if (DaoFactory.getUsersDao().findEmail(email) != null) {
+            registerError = true;
+            errors.put("emailexists", "Email is being used.");
+        }
+
         if (DaoFactory.getUsersDao().findByUsername(username) != null) {
             registerError = true;
-            errors.put("userexists", "Username already exists, try another.");
+            errors.put("userexists", "Username is being used.");
         }
 
         // return in any error occurs

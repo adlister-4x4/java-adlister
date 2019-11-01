@@ -19,27 +19,27 @@
 
 <div class="container">
     <button id="back-button" class="btn btn-primary" onclick="window.location.href = '/ads';"> &#8617 Back to Ads </button>
-<div class="row">
-    <c:forEach var="user" items="${users}">
-        <div id="left-side" class="col-md-6">
-            <img id="user-img" src="https://i.pravatar.cc/200" alt="image placeholder">
-            <h2 id="username">Username: ${user.username}</h2>
+    <div class="row">
+        <c:forEach var="user" items="${users}">
+            <div id="left-side" class="col-md-6">
+                <img id="user-img" src="https://i.pravatar.cc/200" alt="image placeholder">
+                <h2 id="username">Username: ${user.username}</h2>
 
 
-        </div>
-    </c:forEach>
-    <c:forEach var="ad" items="${ads}">
-        <div id="right-side" class="col-md-6">
-            <h2 id="ad-title">${ad.title}</h2>
-            <p id="ad-description">${ad.description}</p>
-<%--            <p>ad user id ${ad.userId}</p>--%>
-<%--            <p>ad id ${ad.id}</p>--%>
-<%--            <p>"/ad?ad_id=${ad.id}"</p>--%>
+            </div>
+        </c:forEach>
+        <c:forEach var="ad" items="${ads}">
+            <div id="right-side" class="col-md-6">
+                <h2 id="ad-title">${ad.title}</h2>
+                <p id="ad-description">${ad.description}</p>
+                    <%--            <p>ad user id ${ad.userId}</p>--%>
+                    <%--            <p>ad id ${ad.id}</p>--%>
+                    <%--            <p>"/ad?ad_id=${ad.id}"</p>--%>
 
-        </div>
-    </c:forEach>
+            </div>
+        </c:forEach>
 
-</div>
+    </div>
 </div>
 
 </body>

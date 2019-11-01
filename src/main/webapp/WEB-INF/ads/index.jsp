@@ -26,9 +26,7 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <p>ad user id ${ad.userId}</p>
-            <p>ad id ${ad.id}</p>
-            <p>"/ad?ad_id=${ad.id}"</p>
+
 
             <a href="/ad?user_id=${ad.userId}&ad_id=${ad.id}">Go to ads page</a>
         </div>
